@@ -9,10 +9,7 @@ import { ProductManagementModule } from './product-management/product-management
 @Module({
 
   imports: [UserModule, StudentManagmentModule, ProductManagementModule],
-
   controllers: [AppController],
-
-
   providers: [AppService],
 })
 export class AppModule {}
