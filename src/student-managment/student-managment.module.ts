@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { student_m } from './entity/student.entity';
-
+//import { TypeORMError } from 'typeorm';
 import { StudentManagmentController } from './student-managment.controller';
 import { StudentManagmentService } from './student-managment.service';
 
@@ -10,4 +10,8 @@ import { StudentManagmentService } from './student-managment.service';
   controllers: [StudentManagmentController],
   providers: [StudentManagmentService],
 })
-export class StudentManagmentModule {}
+export class StudentManagmentModule {
+
+
+  
+}
