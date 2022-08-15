@@ -3,7 +3,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-
 import { StudentManagmentModule } from './student-managment/student-managment.module';
 import { ProductManagementModule } from './product-management/product-management.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -27,6 +26,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         database: configService.get('DB_DATABASE'),
         entities: ['dist/**/*.entity{.ts,.js}'],
         synchronize: configService.get<boolean>('DB_SYNC'),
+        // logging:true
       }),
       inject: [ConfigService],
     }),
