@@ -1,5 +1,5 @@
 export class UpdateStudentDto {
-  //id: number;
+
   FirstName: string;
   LastName: string;
   Gender: string;

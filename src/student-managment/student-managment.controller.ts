@@ -24,12 +24,12 @@ export class StudentManagmentController {
     findOne(@Param('id') id: string) {
         return this.StudentManagmentService.findOne(+id)
     }
-    @Patch()
-    update(@Param(':id') id: string, @Body() updatStudentDto:UpdateStudentDto) {
+    @Patch(':id')
+    update(@Param('id') id: string, @Body() updatStudentDto:UpdateStudentDto) {
      return this.StudentManagmentService.update(+id,updatStudentDto)
     }
     @Delete(':id')
-    remove(@Param(':id')id:string) {
+    remove(@Param('id')id:string) {
         return this.StudentManagmentService.remove(+id)
     }
 }

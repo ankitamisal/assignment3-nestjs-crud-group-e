@@ -17,7 +17,7 @@ export class StudentManagmentService {
     let student: student_m = new student_m();
     //student.id = CreateStudentDto.id
     student.FirstName = CreateStudentDto.FirstName;
-    student.LastName = CreateStudentDto.FirstName;
+    student.LastName = CreateStudentDto.LastName;
     student.Gender = CreateStudentDto.Gender;
     student.Student_Email = CreateStudentDto.Student_Email;
     student.Student_Add = CreateStudentDto.Student_Add;
@@ -35,7 +35,7 @@ export class StudentManagmentService {
   update(id: number, updateStudentDto: UpdateStudentDto) {
     let student: student_m = new student_m();
     student.FirstName = updateStudentDto.FirstName;
-    student.LastName = updateStudentDto.FirstName;
+    student.LastName = updateStudentDto.LastName;
     student.Gender = updateStudentDto.Gender;
     student.Student_Email = updateStudentDto.Student_Email;
     student.Student_Add = updateStudentDto.Student_Add;

@@ -5,6 +5,7 @@ export class student_m {
   id: number;
 
   @Column()
+  //@Field({ nullable: true })
   FirstName: string;
 
   @Column()
