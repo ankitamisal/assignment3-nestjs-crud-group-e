@@ -1,7 +1,7 @@
 export interface UserPost{
     id?:number;
     name: string;
-    state: string;
+    State: string;
     body?:string;
     createdAt?:Date;
 }
