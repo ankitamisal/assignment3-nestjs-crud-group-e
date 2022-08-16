@@ -5,21 +5,26 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { UserModule } from './user.module';
-
+import { EmployeeModule } from './Employeee/employee.module';
 
 import { StudentManagmentModule } from './student-managment/student-managment.module';
 import { ProductManagementModule } from './product-management/product-management.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { BookModule } from './book/book.module';
 @Module({
   imports: [
+    UserModule,
     StudentManagmentModule,
     ProductManagementModule,
+    BookModule,
+    EmployeeModule,
+
     TypeOrmModule.forRootAsync({
       imports: [
         ConfigModule.forRoot({
           isGlobal: true,
-          envFilePath: ".env",
-        }), 
+          envFilePath: '.env',
+        }),
       ],
       useFactory: (configService: ConfigService) => ({
         type: 'postgres',
@@ -37,6 +42,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     }),
   ],
   controllers: [AppController],
+
   providers: [AppService],
 })
 export class AppModule {}
