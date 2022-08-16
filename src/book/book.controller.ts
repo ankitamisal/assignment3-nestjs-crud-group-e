@@ -11,24 +11,23 @@ export class BookController {
   create(@Body() createBookDto: CreateBookDto) {
     return this.bookService.create(createBookDto);
   }
-
   @Get()
   findAll() {
-    return this.bookService.findAll();
+    return this.bookService.findAllBooks();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.bookService.findOne(+id);
+  findOne(@Param('id') id: number) {
+    return this.bookService.getOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateBookDto: UpdateBookDto) {
-    return this.bookService.update(+id, updateBookDto);
+  update(@Param('id') id: number, @Body() createBookDto: UpdateBookDto) {
+    return this.bookService.updatePutBook(id, createBookDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.bookService.remove(+id);
+    return this.bookService.deleteBook(+id);
   }
 }
