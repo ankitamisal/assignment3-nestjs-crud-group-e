@@ -19,17 +19,22 @@ export class StudentManagmentController {
   @Get()
   findAll() {
     return this.StudentManagmentService.findAll();
-    }
-    @Get(':id')
-    findOne(@Param('id') id: string) {
-        return this.StudentManagmentService.findOne(+id)
-    }
-    @Patch(':id')
-    update(@Param('id') id: string, @Body() updatStudentDto:UpdateStudentDto) {
-     return this.StudentManagmentService.update(+id,updatStudentDto)
-    }
-    @Delete(':id')
-    remove(@Param('id')id:string) {
-        return this.StudentManagmentService.remove(+id)
-    }
+  }
+  // @Get(':id')
+  // findOne(@Param('id') id: string) {
+  //     return this.StudentManagmentService.findOne(+id)
+  // }
+  @Get(':id')
+  findOne(@Param('id') id:number) {
+    return this.StudentManagmentService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updatStudentDto: UpdateStudentDto) {
+    return this.StudentManagmentService.update(+id, updatStudentDto);
+  }
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.StudentManagmentService.remove(+id);
+  }
 }

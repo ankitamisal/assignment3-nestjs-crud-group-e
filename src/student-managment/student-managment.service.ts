@@ -28,11 +28,11 @@ export class StudentManagmentService {
     return this.studentRepository.find();
   }
 
-  findOne(id) {
-    return this.studentRepository.findOne(id);
+  findOne(id:number) {
+    return this.studentRepository.findOneBy({id});
   }
 
-  update(id: number, updateStudentDto: UpdateStudentDto) {
+   update(id: number, updateStudentDto: UpdateStudentDto) {
     let student: student_m = new student_m();
     student.FirstName = updateStudentDto.FirstName;
     student.LastName = updateStudentDto.LastName;
