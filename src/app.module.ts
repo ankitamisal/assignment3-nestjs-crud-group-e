@@ -5,13 +5,14 @@ import { UserModule } from './user.module';
 
 import { StudentManagmentModule } from './student-managment/student-managment.module';
 import { ProductManagementModule } from './product-management/product-management.module';
-import { ConfigModule } from '@nestjs/config';
+import { BookModule } from './book/book.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import {ConfigModule}from '@nestjs/config';
 
 @Module({
 
-  imports: [UserModule, StudentManagmentModule, ProductManagementModule,
-    ConfigModule.forRoot({isGlobal:true}),
+  imports: [UserModule, StudentManagmentModule, ProductManagementModule, BookModule,
+  ConfigModule.forRoot({isGlobal:true}),
     TypeOrmModule.forRoot({
       type:'postgres',
       host:process.env.POSTGRES_HOST,
@@ -20,11 +21,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       password:process.env.POSTGRES_PASSWORD,
       database:process.env.POSTGRES_DATABASE,
       autoLoadEntities:true,
-      synchronize:true
-    })
-  
-  ],
+      synchronize:true})],
+
   controllers: [AppController],
+
+
   providers: [AppService],
 })
 export class AppModule {}
