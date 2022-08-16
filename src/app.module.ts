@@ -8,11 +8,14 @@ import { ProductManagementModule } from './product-management/product-management
 import { BookModule } from './book/book.module';
 
 @Module({
-
-  imports: [UserModule, StudentManagmentModule, ProductManagementModule, BookModule],
+  imports: [
+    UserModule,
+    StudentManagmentModule,
+    ProductManagementModule,
+    BookModule,
+  ],
 
   controllers: [AppController],
-
 
   providers: [AppService],
 })
