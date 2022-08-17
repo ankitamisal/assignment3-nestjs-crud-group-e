@@ -33,7 +33,7 @@ import { BookModule } from './book/book.module';
         username: configService.get('DB_USERNAME'),
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_DATABASE'),
-        entities: [__dirname + 'dist/**/*.entity{.ts,.js}'],
+        entities: [__dirname + 'dist/**/*.entity{.js,.ts}'],
         synchronize: configService.get<boolean>('DB_SYNC'),
         //synchronize: true,
         // logging:true

@@ -13,7 +13,7 @@ export class EmployeeService {
   ) {}
   create(CreateEmployeeDto: CreateEmployeeDto): Promise<employee_t> {
     let empl: employee_t = new employee_t();
-    //student.id = CreateStudentDto.id
+
     empl.FirstName = CreateEmployeeDto.FirstName;
     empl.LastName = CreateEmployeeDto.LastName;
     empl.Gender = CreateEmployeeDto.Gender;

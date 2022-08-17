@@ -1,10 +1,12 @@
+import { IsNotEmpty } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class employee_t {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: number;
   @Column()
   //@Field({ nullable: true })
+  @IsNotEmpty()
   FirstName: string;
   @Column()
   LastName: string;
@@ -12,6 +14,7 @@ export class employee_t {
   Gender: string;
   @Column()
   Email: string;
+  
   @Column()
   Add: string;
 }
