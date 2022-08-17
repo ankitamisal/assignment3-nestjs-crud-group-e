@@ -1,42 +1,31 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-
 import { TypeOrmModule } from '@nestjs/typeorm';
-
 import { UserModule } from './user.module';
-
-
+import { EmployeeModule } from './Employeee/employee.module';
 import { StudentManagmentModule } from './student-managment/student-managment.module';
 import { ProductManagementModule } from './product-management/product-management.module';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule} from '@nestjs/config';
+import { BookModule } from './book/book.module';
 @Module({
   imports: [
+    UserModule,
     StudentManagmentModule,
     ProductManagementModule,
-    TypeOrmModule.forRootAsync({
-      imports: [
-        ConfigModule.forRoot({
-          isGlobal: true,
-          envFilePath: ".env",
-        }), 
+    BookModule,
+    EmployeeModule, ConfigModule.forRoot({isGlobal:true}),
+    TypeOrmModule.forRoot({
+      type:'postgres',
+      host:process.env.POSTGRES_HOST,
+      port:parseInt(<string>process.env.POSTGRES_PORT),
+      username:process.env.POSTGRES_USER,
+      password:process.env.POSTGRES_PASSWORD,
+      database:process.env.POSTGRES_DATABASE,
+      autoLoadEntities:true,
+      synchronize:true})
       ],
-      useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        host: configService.get('DB_HOST'),
-        port: configService.get<number>('DB_PORT'),
-        username: configService.get('DB_USERNAME'),
-        password: configService.get('DB_PASSWORD'),
-        database: configService.get('DB_DATABASE'),
-        entities: [__dirname + 'dist/**/*.entity{.ts,.js}'],
-        synchronize: configService.get<boolean>('DB_SYNC'),
-        //synchronize: true,
-        // logging:true
-      }),
-      inject: [ConfigService],
-    }),
-  ],
-  controllers: [AppController],
-  providers: [AppService],
+controllers: [AppController],
+providers: [AppService],
 })
 export class AppModule {}
