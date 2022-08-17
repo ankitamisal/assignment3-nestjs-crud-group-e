@@ -1,6 +1,11 @@
 import { Post, Get, Param, Body, Patch, Delete } from '@nestjs/common';
 import { Controller } from '@nestjs/common';
 
+// import { remove } from '@vue/shared';
+// import { create } from 'domain';
+// import { get } from 'http';
+
+
 import { CreateStudentDto } from './dto/create-student.dto';
 import { UpdateStudentDto } from './dto/update-student.dto';
 import { StudentManagmentService } from './student-managment.service';
