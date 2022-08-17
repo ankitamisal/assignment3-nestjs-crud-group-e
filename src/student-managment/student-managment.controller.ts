@@ -1,8 +1,6 @@
 import { Post, Get, Param, Body, Patch, Delete } from '@nestjs/common';
 import { Controller } from '@nestjs/common';
-//import { remove } from '@vue/shared';
-import { create } from 'domain';
-import { get } from 'http';
+
 import { CreateStudentDto } from './dto/create-student.dto';
 import { UpdateStudentDto } from './dto/update-student.dto';
 import { StudentManagmentService } from './student-managment.service';
@@ -20,10 +18,6 @@ export class StudentManagmentController {
   findAll() {
     return this.StudentManagmentService.findAll();
   }
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //     return this.StudentManagmentService.findOne(+id)
-  // }
   @Get(':id')
   findOne(@Param('id') id:number) {
     return this.StudentManagmentService.findOne(id);
