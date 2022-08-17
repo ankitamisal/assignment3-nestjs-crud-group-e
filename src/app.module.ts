@@ -6,7 +6,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { UserModule } from './user.module';
 
-
 import { StudentManagmentModule } from './student-managment/student-managment.module';
 import { ProductManagementModule } from './product-management/product-management.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -18,8 +17,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       imports: [
         ConfigModule.forRoot({
           isGlobal: true,
-          envFilePath: ".env",
-        }), 
+          envFilePath: '.env',
+        }),
       ],
       useFactory: (configService: ConfigService) => ({
         type: 'postgres',
@@ -28,10 +27,11 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         username: configService.get('DB_USERNAME'),
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_DATABASE'),
-        entities: [__dirname + 'dist/**/*.entity{.ts,.js}'],
+
         synchronize: configService.get<boolean>('DB_SYNC'),
+        entities: [__dirname + 'dist/**/*.entity{.ts,.js}'],
         //synchronize: true,
-        // logging:true
+      logging:true
       }),
       inject: [ConfigService],
     }),

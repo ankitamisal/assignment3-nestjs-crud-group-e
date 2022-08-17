@@ -14,14 +14,14 @@ export class StudentManagmentService {
     private readonly studentRepository: Repository<student_m>,
   ) {}
   create(CreateStudentDto: CreateStudentDto): Promise<student_m> {
-    let student: student_m = new student_m();
+    let stud: student_m = new student_m();
     //student.id = CreateStudentDto.id
-    student.FirstName = CreateStudentDto.FirstName;
-    student.LastName = CreateStudentDto.LastName;
-    student.Gender = CreateStudentDto.Gender;
-    student.Student_Email = CreateStudentDto.Student_Email;
-    student.Student_Add = CreateStudentDto.Student_Add;
-    return this.studentRepository.save(student);
+    stud.FirstName = CreateStudentDto.FirstName;
+    stud.LastName = CreateStudentDto.LastName;
+    stud.Gender = CreateStudentDto.Gender;
+    stud.Student_Email = CreateStudentDto.Student_Email;
+    stud.Student_Add = CreateStudentDto.Student_Add;
+    return this.studentRepository.save(stud);
   }
 
   findAll(): Promise<student_m[]> {
@@ -33,14 +33,14 @@ export class StudentManagmentService {
   }
 
    update(id: number, updateStudentDto: UpdateStudentDto) {
-    let student: student_m = new student_m();
-    student.FirstName = updateStudentDto.FirstName;
-    student.LastName = updateStudentDto.LastName;
-    student.Gender = updateStudentDto.Gender;
-    student.Student_Email = updateStudentDto.Student_Email;
-    student.Student_Add = updateStudentDto.Student_Add;
-    student.id = id;
-    return this.studentRepository.save(student);
+    let stud: student_m = new student_m();
+    stud.FirstName = updateStudentDto.FirstName;
+    stud.LastName = updateStudentDto.LastName;
+    stud.Gender = updateStudentDto.Gender;
+    stud.Student_Email = updateStudentDto.Student_Email;
+    stud.Student_Add = updateStudentDto.Student_Add;
+    stud.id = id;
+    return this.studentRepository.save(stud);
   }
   remove(id: number) {
     return this.studentRepository.delete(id);
