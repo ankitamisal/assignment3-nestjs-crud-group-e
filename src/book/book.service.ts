@@ -22,6 +22,7 @@ export class BookService {
     getOne(id:number):Observable<Book> {
         const book_id=id;
         return from(this.bookRepository.findOneBy({book_id}))
+
     }
     // getSpecificBook(id:number): Observable<Book> {
         // return from(this.bookRepository.find(id));

@@ -5,14 +5,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user.module';
 import { EmployeeModule } from './Employeee/employee.module';
 import { StudentManagmentModule } from './student-managment/student-managment.module';
-import { ProductManagementModule } from './product-management/product-management.module';
-import { ConfigModule} from '@nestjs/config';
+import { ProductModule } from './product-management/product-management.module';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { BookModule } from './book/book.module';
 @Module({
   imports: [
     UserModule,
     StudentManagmentModule,
-    ProductManagementModule,
+    ProductModule,
     BookModule,
     EmployeeModule, ConfigModule.forRoot({isGlobal:true}),
     TypeOrmModule.forRoot({
@@ -26,6 +26,6 @@ import { BookModule } from './book/book.module';
       synchronize:true})
       ],
 controllers: [AppController],
-providers: [AppService],
+providers: [AppService,],
 })
 export class AppModule {}

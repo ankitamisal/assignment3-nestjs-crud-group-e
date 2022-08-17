@@ -6,4 +6,3 @@ export class CreateBookDto {
     book_image: string;
     book_isbn: string;
 }
-
