@@ -31,7 +31,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         synchronize: configService.get<boolean>('DB_SYNC'),
         entities: [__dirname + 'dist/**/*.entity{.ts,.js}'],
         //synchronize: true,
-      logging:true
+        logging: true,
       }),
       inject: [ConfigService],
     }),
