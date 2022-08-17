@@ -17,32 +17,23 @@ import { BookModule } from './book/book.module';
     StudentManagmentModule,
     ProductManagementModule,
     BookModule,
-    EmployeeModule,
-
-    TypeOrmModule.forRootAsync({
-      imports: [
-        ConfigModule.forRoot({
-          isGlobal: true,
-          envFilePath: '.env',
-        }),
+    EmployeeModule, ConfigModule.forRoot({isGlobal:true}),
+    TypeOrmModule.forRoot({
+      type:'postgres',
+      host:process.env.POSTGRES_HOST,
+      port:parseInt(<string>process.env.POSTGRES_PORT),
+      username:process.env.POSTGRES_USER,
+      password:process.env.POSTGRES_PASSWORD,
+      database:process.env.POSTGRES_DATABASE,
+      autoLoadEntities:true,
+      synchronize:true})
       ],
-      useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        host: configService.get('DB_HOST'),
-        port: configService.get<number>('DB_PORT'),
-        username: configService.get('DB_USERNAME'),
-        password: configService.get('DB_PASSWORD'),
-        database: configService.get('DB_DATABASE'),
-        entities: [__dirname + 'dist/**/*.entity{.ts,.js}'],
-        synchronize: configService.get<boolean>('DB_SYNC'),
-        //synchronize: true,
-        // logging:true
-      }),
-      inject: [ConfigService],
-    }),
-  ],
-  controllers: [AppController],
+controllers: [AppController],
 
-  providers: [AppService],
+
+providers: [AppService],
 })
 export class AppModule {}
+
+
+
