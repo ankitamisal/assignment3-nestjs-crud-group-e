@@ -1,30 +1,40 @@
 import { Module } from '@nestjs/common';
-//import { UsersModule } from './usermodule/users.module';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+
 import { TypeOrmModule } from '@nestjs/typeorm';
+
+import { UserModule } from './user.module';
+import { EmployeeModule } from './Employeee/employee.module';
+
+import { StudentManagmentModule } from './student-managment/student-managment.module';
 import { ProductModule } from './product-management/product-management.module';
-import entities from 'typeorm';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { BookModule } from './book/book.module';
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
-    TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        host: configService.get('DB_HOST'),
-        port: +configService.get<number>('DB_PORT'),
-        username: configService.get('DB_USERNAME'),
-        password: configService.get('DB_PASSWORD'),
-        database: configService.get('DB_NAME'),
-        entities: [__dirname + '/**/*.entity{.ts,.js}'],
-        synchronize: true,
-      }),
-      inject: [ConfigService],
-    }),
-    //UsersModule,
+    UserModule,
+    StudentManagmentModule,
     ProductModule,
+    BookModule,
+    EmployeeModule, ConfigModule.forRoot({ isGlobal: true }),
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: process.env.POSTGRES_HOST,
+      port: parseInt(<string>process.env.POSTGRES_PORT),
+      username: process.env.POSTGRES_USER,
+      password: process.env.POSTGRES_PASSWORD,
+      database: process.env.POSTGRES_DATABASE,
+      autoLoadEntities: true,
+      synchronize: true
+    })
   ],
-  controllers: [],
-  providers: [],
+  controllers: [AppController],
+
+
+  providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
+
+
+
