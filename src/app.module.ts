@@ -1,12 +1,9 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-
 import { TypeOrmModule } from '@nestjs/typeorm';
-
 import { UserModule } from './user.module';
 import { EmployeeModule } from './Employeee/employee.module';
-
 import { StudentManagmentModule } from './student-managment/student-managment.module';
 import { ProductModule } from './product-management/product-management.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
