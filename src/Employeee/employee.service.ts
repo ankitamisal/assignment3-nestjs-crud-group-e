@@ -23,14 +23,6 @@ export class EmployeeService {
   }
 
   update(id: number, updateEmployeeDto: UpdateEmployeeDto) {
-    // let empl: employee_t = new employee_t();
-    // empl.Emp_FirstName = updateEmployeeDto.Emp_FirstName;
-    // empl.Emp_LastName = updateEmployeeDto.Emp_LastName;
-    // empl.Emp_Gender = updateEmployeeDto.Emp_Gender;
-    // empl.Emp_Email = updateEmployeeDto.Emp_Email;
-    // empl.Emp_Add = updateEmployeeDto.Emp_Add;
-    // empl.id = id;
-    // return this.employeeRepository.save(empl);
     return this.employeeRepository.update(id, updateEmployeeDto);
   }
   updateAll(id: number, updateEmployeeDto: UpdateEmployeeDto) {

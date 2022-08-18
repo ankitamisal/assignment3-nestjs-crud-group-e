@@ -7,7 +7,13 @@ import {
   Patch,
   Delete,
   Put,
+  UseInterceptors,
+  UploadedFile,
+  Req,
+
 } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
 import { UpdateEmployeeDto } from './dto/update-employee.dto';
 import { EmployeeService } from './employee.service';
@@ -49,4 +55,6 @@ export class EmployeeController {
   remove(@Param('id') id: string) {
     return this.EmployeeService.remove(id);
   }
+
+ 
 }
