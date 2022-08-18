@@ -1,8 +1,10 @@
-import { Body, Controller, Delete, Get, HttpStatus, Param, ParseIntPipe, ParseUUIDPipe, Patch, Post, Put, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpStatus, Param, ParseIntPipe, ParseUUIDPipe, Patch, Post, Put, Res, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { DeleteResult, UpdateResult } from 'typeorm';
 import { } from '../models/product.entity';
 import { ProductPost } from '../models/product.interface';
+
+
 // import { ProductPost } from '../models/product.entity';
 //import {} from '../models/product.interface'
 import { ProductService } from '../services/product.service';
@@ -50,6 +52,26 @@ export class ProductController {
   uploadFile(@UploadedFile() file: Express.Multer.File) {
     console.log(file);
     return fileURLToPath
+  }
+
+
+
+  // @Get('/allData')
+
+  // findPost(): Observable<ProductPost[]> {
+
+  //   return this.ProductService.findAllPost();
+  // }
+
+
+  // @Get()
+  // image(){
+  //   return resizeBy.sendFile()
+  // }
+
+  @Get('amit')
+  seeUploadedFile(@Param('amit') image, @Res() res) {
+    return res.sendFile(image, { root: 'file:///C:/Users/amit.kumar10/Desktop/product/assignment3-nestjs-crud-group-e/uploads/' });
   }
 
 }
