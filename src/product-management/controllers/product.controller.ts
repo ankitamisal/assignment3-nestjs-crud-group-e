@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpStatus, Param, ParseIntPipe, ParseUUIDPipe, Patch, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpStatus, Param, ParseIntPipe, ParseUUIDPipe, Patch, Post, Put, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { DeleteResult, UpdateResult } from 'typeorm';
 import { } from '../models/product.entity';
@@ -7,15 +7,22 @@ import { ProductPost } from '../models/product.interface';
 //import {} from '../models/product.interface'
 import { ProductService } from '../services/product.service';
 
+import { Express } from 'express';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { fileURLToPath } from 'url';
+import { CreateUserModel } from '../models/product.Model';
+
 @Controller('feed')
 export class ProductController {
   constructor(private ProductService: ProductService) { }
   @Post()
-  create(@Body() productPost: ProductPost): Observable<ProductPost> {
+  create(@Body() productPost: CreateUserModel): Observable<ProductPost> {
     return this.ProductService.createPost(productPost);
   }
   @Get('/allData')
+
   findPost(): Observable<ProductPost[]> {
+
     return this.ProductService.findAllPost();
   }
   @Get(':id')
@@ -37,4 +44,12 @@ export class ProductController {
   deletePost(@Param('id', new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number): Observable<DeleteResult> {
     return this.ProductService.DeleteData(id)
   }
+
+  @Post('upload')
+  @UseInterceptors(FileInterceptor('file'))
+  uploadFile(@UploadedFile() file: Express.Multer.File) {
+    console.log(file.buffer);
+    return fileURLToPath
+  }
+
 }
