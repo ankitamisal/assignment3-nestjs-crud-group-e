@@ -9,7 +9,7 @@ export class UserPost{
 
     @IsString()
     State: string;
-    
+
     @IsString()
     body:string;
 

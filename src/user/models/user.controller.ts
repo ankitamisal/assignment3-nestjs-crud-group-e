@@ -17,8 +17,12 @@ create(@Body() userPost: UserPost):Observable<UserPost>{
     return this.userService.createuser(userPost)
 }
 @Get()
-findAll() :Observable <UserPost[]> {
-    return this.userService.findAllUser();
+find(id:number) {
+    return this.userService.find(id);
+}
+@Get()
+findAll() : Observable <UserPost[]> {
+    return this.userService.findAll();
 }
 
 @Patch(':id')

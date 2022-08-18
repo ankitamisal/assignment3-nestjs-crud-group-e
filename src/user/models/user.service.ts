@@ -17,9 +17,12 @@ export class UserService {
         return from(this.userPostRepository.save(userPost));
     }
 
-    findAllUser():Observable <UserPost[]> {
-        return from(this.userPostRepository.find());
+    find(id: number) {
+        return from(this.userPostRepository.findOneBy({id}))
     }
+    findAll(): Observable <UserPost[]> {
+        return from(this.userPostRepository.find());
+      }
 
     updateUser(id: number, userPost:UserPost): Observable<UpdateResult>{
         return from(this.userPostRepository.update(id, userPost))
