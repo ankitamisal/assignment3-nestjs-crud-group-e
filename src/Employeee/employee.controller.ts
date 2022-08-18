@@ -6,6 +6,7 @@ import {
   Body,
   Patch,
   Delete,
+  Put,
 } from '@nestjs/common';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
 import { UpdateEmployeeDto } from './dto/update-employee.dto';
@@ -18,7 +19,7 @@ export class EmployeeController {
     return this.EmployeeService.create(CreateEmployeeDto);
   }
 
-  @Get('/allData')
+  @Get()
   findAll() {
     return this.EmployeeService.findAll();
   }
@@ -30,14 +31,22 @@ export class EmployeeController {
 
   @Patch(':id')
   update(
-    @Param('id') id: number,
+    @Param('id') id: string,
     @Body() UpdateEmployeeDto: UpdateEmployeeDto,
   ) {
     return this.EmployeeService.update(+id, UpdateEmployeeDto);
   }
 
+  @Put(':id')
+  updateAll(
+    @Param('id') id: string,
+    @Body() updateEmployeeDto: UpdateEmployeeDto,
+  ) {
+    return this.EmployeeService.update(+id, updateEmployeeDto);
+  }
+
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.EmployeeService.remove(+id);
+    return this.EmployeeService.remove(id);
   }
 }

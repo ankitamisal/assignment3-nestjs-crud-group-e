@@ -12,14 +12,7 @@ export class EmployeeService {
     private readonly employeeRepository: Repository<employee_t>,
   ) {}
   create(CreateEmployeeDto: CreateEmployeeDto): Promise<employee_t> {
-    let empl: employee_t = new employee_t();
-
-    empl.FirstName = CreateEmployeeDto.FirstName;
-    empl.LastName = CreateEmployeeDto.LastName;
-    empl.Gender = CreateEmployeeDto.Gender;
-    empl.Email = CreateEmployeeDto.Email;
-    empl.Add = CreateEmployeeDto.Add;
-    return this.employeeRepository.save(empl);
+    return this.employeeRepository.save(CreateEmployeeDto);
   }
   findAll(): Promise<employee_t[]> {
     return this.employeeRepository.find();
@@ -30,16 +23,20 @@ export class EmployeeService {
   }
 
   update(id: number, updateEmployeeDto: UpdateEmployeeDto) {
-    let empl: employee_t = new employee_t();
-    empl.FirstName = updateEmployeeDto.FirstName;
-    empl.LastName = updateEmployeeDto.LastName;
-    empl.Gender = updateEmployeeDto.Gender;
-    empl.Email = updateEmployeeDto.Email;
-    empl.Add = updateEmployeeDto.Add;
-    empl.id = id;
-    return this.employeeRepository.save(empl);
+    // let empl: employee_t = new employee_t();
+    // empl.Emp_FirstName = updateEmployeeDto.Emp_FirstName;
+    // empl.Emp_LastName = updateEmployeeDto.Emp_LastName;
+    // empl.Emp_Gender = updateEmployeeDto.Emp_Gender;
+    // empl.Emp_Email = updateEmployeeDto.Emp_Email;
+    // empl.Emp_Add = updateEmployeeDto.Emp_Add;
+    // empl.id = id;
+    // return this.employeeRepository.save(empl);
+    return this.employeeRepository.update(id, updateEmployeeDto);
   }
-  remove(id: number) {
-    return this.employeeRepository.delete(id);
+  updateAll(id: number, updateEmployeeDto: UpdateEmployeeDto) {
+    return this.employeeRepository.update(id, updateEmployeeDto);
+  }
+  remove(id: string) {
+    return this.employeeRepository.delete(+id);
   }
 }

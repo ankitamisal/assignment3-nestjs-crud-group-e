@@ -8,6 +8,8 @@ import { StudentManagmentModule } from './student-managment/student-managment.mo
 import { ProductManagementModule } from './product-management/product-management.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { BookModule } from './book/book.module';
+import { MulterModule } from '@nestjs/platform-express';
+
 @Module({
   imports: [
     UserModule,
@@ -25,8 +27,13 @@ import { BookModule } from './book/book.module';
       database: process.env.POSTGRES_DATABASE,
       autoLoadEntities: true,
       synchronize: true,
+    }),  
+     MulterModule.register({
+      dest:'./upload'
     }),
+    
   ],
+
   controllers: [AppController],
   providers: [AppService],
 })
