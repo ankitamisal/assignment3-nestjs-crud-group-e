@@ -1,7 +1,7 @@
 export class UpdateEmployeeDto {
-  FirstName: string;
-  LastName: string;
-  Gender: string;
-  Email: string;
-  Add: string;
+  Emp_FirstName: string;
+  Emp_LastName: string;
+  Emp_Gender: string;
+  Emp_Email: string;
+  Emp_Add: string;
 }
