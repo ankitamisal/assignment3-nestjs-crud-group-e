@@ -11,30 +11,30 @@ import { ProductPost } from '../models/product.interface';
 export class ProductService {
     constructor(
         @InjectRepository(ProductPostEntity)
-        private readonly ProductPostRepository:Repository<ProductPostEntity>
-    ){}
+        private readonly ProductPostRepository: Repository<ProductPostEntity>
+    ) { }
     // CREATE DATA:
-    createPost(feedPost:ProductPost):Observable<ProductPost>{
-        return from( this.ProductPostRepository.save(feedPost))
+    createPost(feedPost: ProductPost): Observable<ProductPost> {
+        return from(this.ProductPostRepository.save(feedPost))
     }
     // FIND ALL DATA:
-    findAllPost():Observable<ProductPost[]>{
+    findAllPost(): Observable<ProductPost[]> {
         return from(this.ProductPostRepository.find())
     }
     // FIND DATA BY ID:
-    findById(id:number):Observable<ProductPost>{
-        return from(this.ProductPostRepository.findOneBy({id}))
+    findById(id: number): Observable<ProductPost> {
+        return from(this.ProductPostRepository.findOneBy({ id }))
     }
     // UPDATE THE WHOLE DATA:
-    updateData(id:number,feedPost:ProductPost):Observable<UpdateResult>{
-        return from(this.ProductPostRepository.update(id,feedPost))
+    updateData(id: number, feedPost: ProductPost): Observable<UpdateResult> {
+        return from(this.ProductPostRepository.update(id, feedPost))
     }
     // UPDATE SOME FEILDS OF THE DATA:
-    updateSomeData(id:number,feedPost:ProductPost):Observable<UpdateResult>{
-        return from(this.ProductPostRepository.update(id,feedPost))
+    updateSomeData(id: number, feedPost: ProductPost): Observable<UpdateResult> {
+        return from(this.ProductPostRepository.update(id, feedPost))
     }
     // DELETE THE DATA THROUGH ID:
-    DeleteData(id:number):Observable<DeleteResult>{
+    DeleteData(id: number): Observable<DeleteResult> {
         return from(this.ProductPostRepository.delete(id))
     }
 }

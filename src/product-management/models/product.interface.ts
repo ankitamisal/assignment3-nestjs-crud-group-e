@@ -1,9 +1,9 @@
-export interface ProductPost{
-    id?:number;
-    productName?:string;
-    price?:number;
+export interface ProductPost {
+    id?: number;
+    productName?: string;
+    price?: number;
     // stock?:stri;
     // size?:string;
-    image?:string;
-    createdAt?:Date;
+    image?: string;
+    createdAt?: Date;
 }
