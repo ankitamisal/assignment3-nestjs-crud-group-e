@@ -2,10 +2,10 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserModule } from './user.module';
+import { UserModule } from './user/models/user.module';
 import { EmployeeModule } from './Employeee/employee.module';
 import { StudentManagmentModule } from './student-managment/student-managment.module';
-import { ProductManagementModule } from './product-management/product-management.module';
+import { ProductModule } from './product-management/product-management.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { BookModule } from './book/book.module';
 import { MulterModule } from '@nestjs/platform-express';
@@ -14,7 +14,7 @@ import { MulterModule } from '@nestjs/platform-express';
   imports: [
     UserModule,
     StudentManagmentModule,
-    ProductManagementModule,
+    ProductModule,
     BookModule,
     EmployeeModule,
     ConfigModule.forRoot({ isGlobal: true }),
@@ -27,11 +27,10 @@ import { MulterModule } from '@nestjs/platform-express';
       database: process.env.POSTGRES_DATABASE,
       autoLoadEntities: true,
       synchronize: true,
-    }),  
-     MulterModule.register({
-      dest:'./upload'
     }),
-    
+    MulterModule.register({
+      dest: './upload',
+    }),
   ],
 
   controllers: [AppController],
