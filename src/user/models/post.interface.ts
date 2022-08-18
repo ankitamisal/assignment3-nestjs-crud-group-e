@@ -1,7 +1,17 @@
-export interface UserPost{
-    id?:number;
+import { IsInt, IsString } from "class-validator";
+
+export class UserPost{
+    @IsInt()
+    id:number;
+
+    @IsString()
     name: string;
+
+    @IsString()
     State: string;
-    body?:string;
-    createdAt?:Date;
+
+    @IsString()
+    body:string;
+
+    createdAt:Date;
 }
