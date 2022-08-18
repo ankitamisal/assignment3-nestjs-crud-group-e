@@ -1,3 +1,4 @@
+
 import {
   Controller,
   Get,
@@ -15,15 +16,13 @@ import { AppService } from './app.service';
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) { }
-
-  @Post('/upload')
-  @UseInterceptors(FileInterceptor('image', { dest: './upload' }))
+  @Post('/uploads')
+  @UseInterceptors(FileInterceptor('image', { dest: './uploads' }))
   uploadedFile(@UploadedFile() file: Express.Multer.File) {
     console.log(file);
   }
-
   @Get(':imgpath')
   seeUploadedFile(@Param('imgpath') image, @Res() res) {
-    return res.sendFile(image, { root: 'upload' });
+    return res.sendFile(image, { root: 'uploads' });
   }
 }

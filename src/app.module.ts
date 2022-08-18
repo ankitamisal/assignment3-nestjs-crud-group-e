@@ -29,10 +29,9 @@ import { MulterModule } from '@nestjs/platform-express';
       synchronize: true,
     }),
     MulterModule.register({
-      dest: './upload',
+      dest: './uploads',
     }),
   ],
-
   controllers: [AppController],
   providers: [AppService],
 })
