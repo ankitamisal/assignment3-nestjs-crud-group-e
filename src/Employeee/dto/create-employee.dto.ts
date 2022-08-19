@@ -16,4 +16,5 @@ export class CreateEmployeeDto {
   @IsString()
   @IsDefined()
   Emp_Add: string;
+  Emp_profile: string;
 }
