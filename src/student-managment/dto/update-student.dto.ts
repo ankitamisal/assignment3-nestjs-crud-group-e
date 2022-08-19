@@ -5,4 +5,5 @@ export class UpdateStudentDto {
   Gender: string;
   Student_Email: string;
   Student_Add: string;
+  Image: string;
 }
