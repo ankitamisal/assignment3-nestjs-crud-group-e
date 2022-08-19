@@ -23,6 +23,5 @@ export class student_m {
   Student_Add: string;
 
   @Column()
-  Image: string
-  
+  Image: string;
 }
