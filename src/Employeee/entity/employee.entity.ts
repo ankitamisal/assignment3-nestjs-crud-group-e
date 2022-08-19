@@ -2,19 +2,20 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class employee_t {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn()
   id: number;
   @Column()
   //@Field({ nullable: true })
   // @IsNotEmpty()
-   FirstName: string;
+  Emp_FirstName: string;
   @Column()
-  LastName: string;
+  Emp_LastName: string;
   @Column()
-  Gender: string;
+  Emp_Gender: string;
   @Column()
-  Email: string;
-  
+  Emp_Email: string;
   @Column()
-  Add: string;
+  Emp_Add: string;
+  @Column()
+  Emp_profile:string;
 }
