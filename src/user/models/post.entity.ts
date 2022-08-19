@@ -6,7 +6,7 @@ import { find } from 'rxjs';
 @Entity('User-Post')
 export class UserPostEntity {
   @PrimaryGeneratedColumn()
-  @IsInt()
+  
   id: number;
   
 
@@ -19,8 +19,7 @@ export class UserPostEntity {
   State: string;
 
   @Column()
-  @IsNotEmpty()
-  body: string;
+  Image: string;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
