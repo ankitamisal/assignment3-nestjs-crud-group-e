@@ -4,4 +4,5 @@ export class UpdateEmployeeDto {
   Emp_Gender: string;
   Emp_Email: string;
   Emp_Add: string;
+  Emp_profile:string;
 }

@@ -7,14 +7,15 @@ export class employee_t {
   @Column()
   //@Field({ nullable: true })
   // @IsNotEmpty()
-   FirstName: string;
+  Emp_FirstName: string;
   @Column()
   Emp_LastName: string;
   @Column()
   Emp_Gender: string;
   @Column()
- 
   Emp_Email: string;
   @Column()
   Emp_Add: string;
+  @Column()
+  Emp_profile:string;
 }
