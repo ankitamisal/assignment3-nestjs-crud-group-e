@@ -7,7 +7,7 @@ export class UpdateBookDto extends PartialType(CreateBookDto) {
         author: string;
         price: number;
         book_image: string;
-        book_isbn: string;
+        book_number: string;
     
     
 }

@@ -26,7 +26,7 @@ import { BookModule } from './book/book.module';
       password:process.env.POSTGRES_PASSWORD,
       database:process.env.POSTGRES_DATABASE,
       autoLoadEntities:true,
-      synchronize:true})
+      synchronize:true,})
       ],
 controllers: [AppController],
 

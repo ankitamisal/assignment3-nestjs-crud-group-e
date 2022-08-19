@@ -12,5 +12,5 @@ export class BookEntity {
     @Column()
     book_image: string;
     @Column()
-    book_isbn: string;
+    book_number: string;
 }
