@@ -15,7 +15,8 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
   SwaggerModule.setup('api', app, document);
 
-  await app.listen(8080);
+  app.enableCors();
 
+  await app.listen(8080);
 }
 bootstrap();
