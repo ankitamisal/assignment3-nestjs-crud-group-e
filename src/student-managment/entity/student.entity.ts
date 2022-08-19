@@ -1,6 +1,8 @@
+import { IsNotEmpty } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class student_m {
+  //@PrimaryGeneratedColumn('uuid')
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -19,4 +21,8 @@ export class student_m {
 
   @Column()
   Student_Add: string;
+
+  @Column()
+  Image: string
+  
 }

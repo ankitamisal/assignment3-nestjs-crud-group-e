@@ -1,4 +1,4 @@
-import { Post, Get, Param, Body, Patch, Delete } from '@nestjs/common';
+import { Post, Get, Param, Body, Patch, Delete, Put } from '@nestjs/common';
 import { Controller } from '@nestjs/common';
 
 // import { remove } from '@vue/shared';
@@ -24,14 +24,21 @@ export class StudentManagmentController {
     return this.StudentManagmentService.findAll();
   }
   @Get(':id')
-  findOne(@Param('id') id:number) {
+  findOne(@Param('id') id: number) {
     return this.StudentManagmentService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updatStudentDto: UpdateStudentDto) {
+  update(@Param('id') id: string, @Body() UpdatStudentDto: UpdateStudentDto) {
+    return this.StudentManagmentService.update(+id, UpdatStudentDto);
+  }
+
+  @Put(':id')
+  updateAll(@Param('id') id: string,
+    @Body() updatStudentDto: UpdateStudentDto,) {
     return this.StudentManagmentService.update(+id, updatStudentDto);
   }
+
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.StudentManagmentService.remove(+id);
