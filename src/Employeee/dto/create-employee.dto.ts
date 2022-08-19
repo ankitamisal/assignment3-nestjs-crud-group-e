@@ -1,7 +1,20 @@
+import { IsDefined, IsEmail, IsNotEmpty, IsString } from 'class-validator';
+
 export class CreateEmployeeDto {
-  FirstName: string;
-  LastName: string;
-  Gender: string;
-  Email: string;
-  Add: string;
+  @IsString()
+  @IsDefined()
+  Emp_FirstName: string;
+  @IsString()
+  @IsDefined()
+  Emp_LastName: string;
+  @IsString()
+  @IsDefined()
+  Emp_Gender: string;
+  @IsEmail()
+  @IsNotEmpty()
+  Emp_Email: string;
+  @IsString()
+  @IsDefined()
+  Emp_Add: string;
+  Emp_profile: string;
 }

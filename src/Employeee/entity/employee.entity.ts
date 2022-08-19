@@ -1,3 +1,4 @@
+// import { IsNotEmpty } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class employee_t {
@@ -5,13 +6,16 @@ export class employee_t {
   id: number;
   @Column()
   //@Field({ nullable: true })
-  FirstName: string;
+  // @IsNotEmpty()
+  Emp_FirstName: string;
   @Column()
-  LastName: string;
+  Emp_LastName: string;
   @Column()
-  Gender: string;
+  Emp_Gender: string;
   @Column()
-  Email: string;
+  Emp_Email: string;
   @Column()
-  Add: string;
+  Emp_Add: string;
+  @Column()
+  Emp_profile:string;
 }

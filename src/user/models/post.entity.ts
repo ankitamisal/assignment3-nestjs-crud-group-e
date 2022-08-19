@@ -1,22 +1,27 @@
-import {Column,Entity,PrimaryGeneratedColumn} from 'typeorm';
+// import { from } from 'rxjs';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { IsNotEmpty, IsString, IsInt} from 'class-validator';
+import { find } from 'rxjs';
 
 @Entity('User-Post')
-export class UserPostEntity{
-    
+export class UserPostEntity {
+  @PrimaryGeneratedColumn()
+  @IsInt()
+  id: number;
+  
 
-    @PrimaryGeneratedColumn()
-    id: number;
+  @Column()
+  @IsString()
+  name: string;
 
-    @Column()
-    name:string;
+  @Column()
+  @IsString()
+  State: string;
 
-    @Column()
-    State:string;
-    
+  @Column()
+  @IsNotEmpty()
+  body: string;
 
-    @Column()
-    body:string;
-
-    @Column({type: 'timestamp', default:()=>'CURRENT_TIMESTAMP'})
-    createdAt: Date;
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  createdAt: Date;
 }
