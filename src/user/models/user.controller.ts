@@ -38,6 +38,17 @@ update(
 
     return this.userService.updateUser(id, userPost)
 }
+
+@Put(':id')
+updateAll(
+
+  @Param(':id') id:number,
+  @Body() userPost: UserPost
+):Observable<UpdateResult> {
+
+  return this.userService.updateAllUser(id, userPost)
+}
+
 @Delete(':id')
 delete(
     @Param('id') id:number,

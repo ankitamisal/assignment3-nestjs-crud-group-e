@@ -28,6 +28,10 @@ export class UserService {
         return from(this.userPostRepository.update(id, userPost))
 
     }
+    updateAllUser(id: number, userPost:UserPost): Observable<UpdateResult>{
+        return from(this.userPostRepository.update(id, userPost))
+
+    }
     deleteUser( id: number): Observable<DeleteResult>{
         return from(this.userPostRepository.delete(id))
     }
