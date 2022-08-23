@@ -1,7 +1,7 @@
-import { IsInt, IsString } from "class-validator";
+import { IsString } from "class-validator";
 
 export class UserPost{
-    @IsInt()
+  
     id:number;
 
     @IsString()
@@ -10,8 +10,8 @@ export class UserPost{
     @IsString()
     State: string;
 
-    @IsString()
-    body:string;
+   
+    Image:string;
 
     createdAt:Date;
 }
