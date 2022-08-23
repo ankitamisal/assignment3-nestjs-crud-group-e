@@ -17,6 +17,7 @@ export class BookController {
     schema: {$ref: getSchemaPath(CreateBookDto)}
   })
   create(@Body() createBookDto: CreateBookDto) {
+    
     return this.bookService.create(createBookDto);
   }
   @Get()
