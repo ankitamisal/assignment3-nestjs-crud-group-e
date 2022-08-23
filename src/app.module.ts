@@ -10,6 +10,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { BookModule } from './book/book.module';
 import { MulterModule } from '@nestjs/platform-express';
 
+// sgdvggvsa
 @Module({
   imports: [
     UserModule,
@@ -29,9 +30,7 @@ import { MulterModule } from '@nestjs/platform-express';
       synchronize: true,
     }),
     MulterModule.register({
-
       dest: './images',
-
     }),
   ],
   controllers: [AppController],
