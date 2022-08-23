@@ -13,5 +13,5 @@ export class UserPost{
    
     Image:string;
 
-    createdAt:Date;
+    // createdAt:Date;
 }
