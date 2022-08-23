@@ -26,7 +26,7 @@ export class EmployeeService {
     return this.employeeRepository.update(id, updateEmployeeDto);
   }
   updateAll(id: number, updateEmployeeDto: UpdateEmployeeDto) {
-    return this.employeeRepository.update(id, updateEmployeeDto);
+    return this.update(id, updateEmployeeDto);
   }
   remove(id: string) {
     return this.employeeRepository.delete(+id);
