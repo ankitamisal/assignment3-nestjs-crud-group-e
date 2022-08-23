@@ -4,8 +4,6 @@ import { UserPostEntity } from './post.entity';
 import{ Repository, UpdateResult,DeleteResult } from 'typeorm';
 import { UserPost } from './post.interface';
 import { from, Observable } from 'rxjs';
-
-
 @Injectable()
 export class UserService {
     constructor(

@@ -19,7 +19,7 @@ export class CreateUserModel {
     @IsEnum(ProductSize)
     size: ProductSize;
 
-    @IsNotEmpty()
+    //@IsNotEmpty()
     image: string;
 }
 
