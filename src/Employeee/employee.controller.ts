@@ -57,7 +57,7 @@ export class EmployeeController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.EmployeeService.remove(id);
+    return this.EmployeeService.remove(id); 
   }
   @Post('/images')
   @UseInterceptors(

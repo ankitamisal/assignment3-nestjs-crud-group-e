@@ -7,17 +7,16 @@ async function bootstrap() {
   app.enableCors();
   const config = new DocumentBuilder()
 
-    .setTitle('student example')
-    .setDescription('The student API description')
-    .setVersion('1.0')
-    .addTag('student')
-    .build();
-  const document = SwaggerModule.createDocument(app, config);
-  app.useGlobalPipes(new ValidationPipe());
-  SwaggerModule.setup('api', app, document);
+  .setTitle('Cats example')
+  .setDescription('The cats API description')
+  .setVersion('1.0')
+  .addTag('cats')
+  .build();
+const document = SwaggerModule.createDocument(app, config);
+SwaggerModule.setup('api', app, document);
+app.enableCors();
 
-  app.enableCors();
+  await app.listen(3001);
 
-  await app.listen(8080);
 }
 bootstrap();
