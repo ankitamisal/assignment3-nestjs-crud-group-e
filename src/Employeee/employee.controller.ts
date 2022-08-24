@@ -24,7 +24,7 @@ export class EmployeeController {
   constructor(private readonly EmployeeService: EmployeeService) {}
   @Post()
   create(@Body() CreateEmployeeDto: CreateEmployeeDto) {
-    CreateEmployeeDto.Emp_profile = this.imagepath;
+    // CreateEmployeeDto.Emp_profile = this.imagepath;
     return this.EmployeeService.create(CreateEmployeeDto);
   }
 
@@ -35,7 +35,7 @@ export class EmployeeController {
 
   @Get(':id')
   findOne(@Param('id') id: number) {
-    return this.EmployeeService.findOne(id);
+    return this.EmployeeService.findOne(+id);
   }
 
   @Patch(':id')
@@ -43,7 +43,7 @@ export class EmployeeController {
     @Param('id') id: string,
     @Body() UpdateEmployeeDto: UpdateEmployeeDto,
   ) {
-    UpdateEmployeeDto.Emp_profile = this.imagepath;
+    // UpdateEmployeeDto.Emp_profile = this.imagepath;
     return this.EmployeeService.update(+id, UpdateEmployeeDto);
   }
 
@@ -57,7 +57,7 @@ export class EmployeeController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.EmployeeService.remove(id);
+    return this.EmployeeService.remove(id); 
   }
   @Post('/images')
   @UseInterceptors(

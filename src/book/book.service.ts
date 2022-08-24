@@ -41,4 +41,4 @@ export class BookService {
     deleteBook(id: number): Observable<DeleteResult> {
         return from(this.bookRepository.delete(id));
     }
-}
+}   
