@@ -9,6 +9,7 @@ import { FileInterceptor } from '@nestjs/platform-express/multer';
 import { diskStorage } from 'multer';
 
 
+
 @Controller('user')
 export class UserController {
 imagepath: string;
@@ -43,7 +44,7 @@ update(
 updateAll(
 
   @Param(':id') id:number,
-  @Body() userPost: UserPost
+  @Body() userPost: UserPost,
 ):Observable<UpdateResult> {
 
   return this.userService.updateAllUser(id, userPost)
@@ -54,9 +55,7 @@ delete(
     @Param('id') id:number,
     
 ):Observable<DeleteResult>{
-    return this.userService.deleteUser(id)
-    
-
+    return this.userService.deleteUser(+id)
 }
 @Post('/images')
 @UseInterceptors(
@@ -82,7 +81,7 @@ handleupload(@UploadedFile() image: Express.Multer.File) {
 }
 @Get('showimage/:image')
 seeUploadedFile(@Param('image') image, @Res() res) {
-  return res.sendFile(image, { root: './images' });
+  return res.sendFile(image, { root:'./images' });
 
 }
 }

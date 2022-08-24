@@ -7,14 +7,18 @@ import { find } from 'rxjs';
 export class UserPostEntity {
   @PrimaryGeneratedColumn()
   id: number;
+
   @Column()
   @IsString()
   name: string;
+
   @Column()
   @IsString()
   State: string;
+
   @Column()
   Image: string;
+  
   // @Column()
   // createdAt: Date;
 }

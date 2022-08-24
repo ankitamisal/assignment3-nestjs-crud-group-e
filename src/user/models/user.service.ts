@@ -10,7 +10,6 @@ export class UserService {
         @InjectRepository(UserPostEntity)
         private readonly userPostRepository: Repository<UserPostEntity>
     ){}
-    
     createuser(userPost:UserPost):Observable<UserPost>{
         return from(this.userPostRepository.save(userPost));
     }
