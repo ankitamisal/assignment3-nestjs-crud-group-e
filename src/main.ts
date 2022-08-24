@@ -6,17 +6,15 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors();
   const config = new DocumentBuilder()
-
-  .setTitle('Cats example')
-  .setDescription('The cats API description')
-  .setVersion('1.0')
-  .addTag('cats')
-  .build();
-const document = SwaggerModule.createDocument(app, config);
-SwaggerModule.setup('api', app, document);
-app.enableCors();
-
+    .setTitle('student example')
+    .setDescription('The student API description')
+    .setVersion('1.0')
+    .addTag('student')
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  app.useGlobalPipes(new ValidationPipe());
+  SwaggerModule.setup('api', app, document);
+  app.enableCors();
   await app.listen(3001);
-
 }
 bootstrap();
