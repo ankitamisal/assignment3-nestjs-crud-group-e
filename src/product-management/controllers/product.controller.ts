@@ -36,7 +36,7 @@ export class ProductController {
   }
   @Put(':id')
   updatePost(
-    @Param('id' ) id: number,
+    @Param('id') id: number,
     @Body() productPost: ProductPost,
   ): Observable<UpdateResult> {
     return this.ProductService.updateData(id, productPost);
