@@ -12,10 +12,13 @@ import { ProductService } from '../services/product.service';
 import { Express } from 'express';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { fileURLToPath } from 'url';
-import { CreateUserModel } from '../models/product.Model';
+import { CreateUserModel } from '../models/productModel';
+import { extname } from 'path';
+import { diskStorage } from 'multer';
 
-@Controller('feed')
+@Controller('product')
 export class ProductController {
+  imagepath: string;
   constructor(private ProductService: ProductService) { }
   @Post()
   create(@Body() productPost: CreateUserModel): Observable<ProductPost> {
@@ -28,31 +31,31 @@ export class ProductController {
     return this.ProductService.findAllPost();
   }
   @Get(':id')
-  findPostId(@Param('id', new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number): Observable<ProductPost> {
+  findPostId(@Param('id') id: number): Observable<ProductPost> {
     return this.ProductService.findById(id);
   }
   @Put(':id')
   updatePost(
-    @Param('id', new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number,
+    @Param('id' ) id: number,
     @Body() productPost: ProductPost,
   ): Observable<UpdateResult> {
     return this.ProductService.updateData(id, productPost);
   }
   @Patch(':id')
-  updateSomeData(@Param('id', new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number, @Body() feedPost: ProductPost): Observable<UpdateResult> {
+  updateSomeData(@Param('id') id: number, @Body() feedPost: ProductPost): Observable<UpdateResult> {
     return this.ProductService.updateSomeData(id, feedPost)
   }
   @Delete(':id')
-  deletePost(@Param('id', new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number): Observable<DeleteResult> {
+  deletePost(@Param('id') id: number): Observable<DeleteResult> {
     return this.ProductService.DeleteData(id)
   }
 
-  @Post('upload')
-  @UseInterceptors(FileInterceptor('image', { dest: "./uploads", }))
-  uploadFile(@UploadedFile() file: Express.Multer.File) {
-    console.log(file);
-    return fileURLToPath
-  }
+  // @Post('upload')
+  // @UseInterceptors(FileInterceptor('image', { dest: "./uploads", }))
+  // uploadFile(@UploadedFile() file: Express.Multer.File) {
+  //   console.log(file);
+  //   return fileURLToPath
+  // }
 
 
 
@@ -69,9 +72,42 @@ export class ProductController {
   //   return resizeBy.sendFile()
   // }
 
-  @Get('amit')
-  seeUploadedFile(@Param('amit') image, @Res() res) {
-    return res.sendFile(image, { root: 'file:///C:/Users/amit.kumar10/Desktop/product/assignment3-nestjs-crud-group-e/uploads/' });
-  }
+  // @Get('amit')
+  // seeUploadedFile(@Param('amit') image, @Res() res) {
+  //   return res.sendFile(image, { root: './uploads' });
+  // }
+  // @Get(':imgpath')
+  // seeUploadedFile(@Param('imgpath') image, @Res() res) {
+  //   return res.sendFile(image, { root: 'uploads' });
+  // }
 
+
+  @Post('image')
+  @UseInterceptors(FileInterceptor('image', {
+    storage: diskStorage({
+      destination: './images',
+      filename: (req, image, callback) => {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+        const ext = extname(image.originalname);
+        // const filename = `${image.originalname}-${uniqueSuffix}${ext}`;
+        const filename = `${uniqueSuffix}${ext}`;
+        callback(null, filename);
+      }
+    }),
+  }),
+  )
+  handleupload(@UploadedFile() image: Express.Multer.File) {
+    this.imagepath = image.path;
+    console.log('image', image);
+    console.log('path', image.path);
+    return "file upload API";
+  }
+  @Get('image/:imgpath')
+  seeUploadedFile(@Param('imgpath') image, @Res() res) {
+    return res.sendFile(image, { root: './images' });
+  }
+  @Get('image')
+  seeUploadedFileall(@Param('imgpath') image, @Res() res) {
+    return res.sendFile(image, { root: './images' });
+  }
 }
