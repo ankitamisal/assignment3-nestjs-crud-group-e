@@ -8,8 +8,10 @@
 //     createdAt?:Date;
 // }
 //import { type } from 'os';
+import { IsEmpty, IsNotEmpty } from 'class-validator';
 import { timestamp } from 'rxjs';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { product_Categories } from './oneToMany.entity';
 //import {v4 as uuidv4} from 'uuid';
 
 export enum ProductData {
@@ -26,10 +28,11 @@ export enum ProductSize {
 
 
 export class ProductPostEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: number;
 
   @Column({ default: '' })
+  @IsNotEmpty()
   productName: string;
 
   @Column({ type: "int" })
@@ -46,4 +49,12 @@ export class ProductPostEntity {
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
+  @JoinColumn()
+
+  // @OneToMany( typeFunctionOrTarget:()=>OneToMany,)
+  //@OneToMany(()=>product_Categories,(post:product_Categories)=>post.user)
+  @OneToMany(() => product_Categories, (pro: product_Categories) => pro.post)
+  public products: product_Categories[]
+
+
 }
