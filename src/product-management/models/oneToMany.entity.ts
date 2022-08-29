@@ -13,6 +13,6 @@ export class product_Categories {
 
     // @ManyToOne(() => many, (photo) => many.user)
     // photos: Photo[]
-    @ManyToOne(() => ProductPostEntity, (post: ProductPostEntity) => post.products)
-    post: ProductPostEntity
+    // @ManyToOne(() => ProductPostEntity, (post: ProductPostEntity) => post.products)
+    // post: ProductPostEntity
 }

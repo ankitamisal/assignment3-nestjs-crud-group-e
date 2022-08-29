@@ -10,7 +10,7 @@
 //import { type } from 'os';
 import { IsEmpty, IsNotEmpty } from 'class-validator';
 import { timestamp } from 'rxjs';
-import { Column, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { product_Categories } from './oneToMany.entity';
 //import {v4 as uuidv4} from 'uuid';
 
@@ -41,20 +41,24 @@ export class ProductPostEntity {
   @Column({ type: 'enum', enum: ProductData, default: null })
   stock: ProductData;
 
-  @Column({ type: 'enum', enum: ProductSize, default: null })
-  size: ProductSize;
+  // @Column({ type: 'enum', enum: ProductSize, default: null })
+  // size: ProductSize;
 
   @Column({ default: '' })
   image: string;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
-  @JoinColumn()
+
+
+  @ManyToMany(() => product_Categories)
+  @JoinTable()
+  public categories: product_Categories[]
 
   // @OneToMany( typeFunctionOrTarget:()=>OneToMany,)
   //@OneToMany(()=>product_Categories,(post:product_Categories)=>post.user)
-  @OneToMany(() => product_Categories, (pro: product_Categories) => pro.post)
-  public products: product_Categories[]
+  // @OneToMany(() => product_Categories, (pro: product_Categories) => pro.post)
+  // public products: product_Categories[]
 
 
 }
