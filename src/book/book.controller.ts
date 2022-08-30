@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UploadedFile, Res, UseInterceptors } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UploadedFile, Res, UseInterceptors, Put } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express/multer';
 import { ApiBody, getSchemaPath } from '@nestjs/swagger';
 import { diskStorage } from 'multer';
@@ -15,6 +15,7 @@ export class BookController {
   @Post()
   @ApiBody({
     schema: {$ref: getSchemaPath(CreateBookDto)}
+    
   })
   create(@Body() createBookDto: CreateBookDto) {
     
@@ -34,6 +35,10 @@ export class BookController {
   update(@Param('id') id: number, @Body() createBookDto: UpdateBookDto) {
     return this.bookService.updatePutBook(id, createBookDto);
   }
+@Put(":id")
+updatePut(@Param('id') id: number, @Body() createBookDto: UpdateBookDto){
+  return this.bookService.updatePutBook(id, createBookDto);
+}
 
   @Delete(':id')
   remove(@Param('id') id: string) {
@@ -65,3 +70,7 @@ export class BookController {
     return res.sendFile(image, { root: './image' });
   }
 }
+function PUT(arg0: string) {
+  throw new Error('Function not implemented.');
+}
+
