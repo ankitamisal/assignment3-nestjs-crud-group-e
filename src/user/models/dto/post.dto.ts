@@ -10,8 +10,11 @@ export class UserPost{
     @IsString()
     State: string;
 
-   
+    @IsString()
     Image:string;
+
+    @IsString()
+    Email:String;
 
     // createdAt:Date;
 }

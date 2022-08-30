@@ -1,15 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UserPostEntity } from './post.entity';
+import { UserPostEntity } from './entity/users.entity';
 import{ Repository, UpdateResult,DeleteResult } from 'typeorm';
-import { UserPost } from './post.interface';
+import { UserPost } from './dto/post.dto';
 import { from, Observable } from 'rxjs';
 @Injectable()
 export class UserService {
     constructor(
         @InjectRepository(UserPostEntity)
         private readonly userPostRepository: Repository<UserPostEntity>
-    ){}
+    ){}    
     createuser(userPost:UserPost):Observable<UserPost>{
         return from(this.userPostRepository.save(userPost));
     }

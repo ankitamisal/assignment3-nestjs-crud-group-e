@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Put, Res, UploadedFile, UseInterceptors } from '@nestjs/common';
-import { UserPost } from './post.interface';
+import { UserPost } from './dto/post.dto';
 import { UserService } from './user.service';
 import { Observable } from 'rxjs';
 import{ UpdateResult } from 'typeorm';
@@ -84,4 +84,4 @@ seeUploadedFile(@Param('image') image, @Res() res) {
   return res.sendFile(image, { root:'./images' });
 
 }
-}
+} 

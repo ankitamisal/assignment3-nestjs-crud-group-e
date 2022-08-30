@@ -9,6 +9,7 @@ import { ProductModule } from './product-management/product-management.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { BookModule } from './book/book.module';
 import { MulterModule } from '@nestjs/platform-express';
+import { UserRoleModule } from './user-role/user-role.module';
 
 // sgdvggvsa
 @Module({
@@ -32,6 +33,7 @@ import { MulterModule } from '@nestjs/platform-express';
     MulterModule.register({
       dest: './images',
     }),
+    UserRoleModule,
   ],
   controllers: [AppController],
   providers: [AppService],
