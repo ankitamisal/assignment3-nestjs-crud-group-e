@@ -9,6 +9,8 @@ import { ProductModule } from './product-management/product-management.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { BookModule } from './book/book.module';
 import { MulterModule } from '@nestjs/platform-express';
+import { ProductPostEntity } from './product-management/models/product.entity';
+import { product_Categories } from './product-management/models/oneToMany.entity';
 import { UserRoleModule } from './user-role/user-role.module';
 
 // sgdvggvsa
@@ -29,7 +31,9 @@ import { UserRoleModule } from './user-role/user-role.module';
       database: process.env.POSTGRES_DATABASE,
       autoLoadEntities: true,
       synchronize: true,
+      entities:['dist/src/**/*.entity.js']
     }),
+    TypeOrmModule.forFeature([product_Categories,ProductPostEntity]),
     MulterModule.register({
       dest: './images',
     }),

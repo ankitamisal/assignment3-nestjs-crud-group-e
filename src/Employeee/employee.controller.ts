@@ -11,12 +11,15 @@ import {
   UploadedFile,
   Req,
   Res,
+  UseGuards,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { create } from 'domain';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
 import { UpdateEmployeeDto } from './dto/update-employee.dto';
+import { EmployeeModule } from './employee.module';
 import { EmployeeService } from './employee.service';
 @Controller('Employeee')
 export class EmployeeController {
@@ -96,4 +99,11 @@ export class EmployeeController {
   // seeUploadedFile(@Param('imgpath') image, @Res() res) {
   //   return res.sendFile(image, { root: './images' });
   // }
+
+//   @Get('/data')
+//  seed(){
+//    this.EmployeeService.seed();
+//   return 'seed completed';
+// }
+  
 }
