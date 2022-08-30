@@ -31,7 +31,7 @@ import { product_Categories } from './product-management/models/oneToMany.entity
       autoLoadEntities: true,
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([product_Categories,ProductPostEntity]),
+    TypeOrmModule.forFeature([product_Categories, ProductPostEntity]),
     MulterModule.register({
       dest: './images',
     }),
@@ -39,4 +39,4 @@ import { product_Categories } from './product-management/models/oneToMany.entity
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

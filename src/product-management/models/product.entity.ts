@@ -28,7 +28,7 @@ export enum ProductSize {
 
 
 export class ProductPostEntity {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn("uuid")
   id: number;
 
   @Column({ default: '' })
@@ -52,7 +52,10 @@ export class ProductPostEntity {
 
 
   @ManyToMany(() => product_Categories)
-  @JoinTable()
+  @JoinTable({
+    name: 'join_product',
+  })
+  //public product:
   public categories: product_Categories[]
 
   // @OneToMany( typeFunctionOrTarget:()=>OneToMany,)
