@@ -30,6 +30,7 @@ import { product_Categories } from './product-management/models/oneToMany.entity
       database: process.env.POSTGRES_DATABASE,
       autoLoadEntities: true,
       synchronize: true,
+      entities:['dist/src/**/*.entity.js']
     }),
     TypeOrmModule.forFeature([product_Categories,ProductPostEntity]),
     MulterModule.register({
