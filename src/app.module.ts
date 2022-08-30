@@ -28,6 +28,7 @@ import { MulterModule } from '@nestjs/platform-express';
       database: process.env.POSTGRES_DATABASE,
       autoLoadEntities: true,
       synchronize: true,
+      entities:['dist/src/**/*.entity.js']
     }),
     MulterModule.register({
       dest: './images',
