@@ -33,7 +33,7 @@ import { UserRoleModule } from './user-role/user-role.module';
       synchronize: true,
       entities:['dist/src/**/*.entity.js']
     }),
-    TypeOrmModule.forFeature([product_Categories,ProductPostEntity]),
+    TypeOrmModule.forFeature([product_Categories, ProductPostEntity]),
     MulterModule.register({
       dest: './images',
     }),
@@ -42,4 +42,4 @@ import { UserRoleModule } from './user-role/user-role.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
