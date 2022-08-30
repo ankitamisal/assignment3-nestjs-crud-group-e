@@ -46,6 +46,7 @@ export class StudentManagmentController {
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() UpdatStudentDto: UpdateStudentDto) {
+    //CreateStudentDto.Image = this.imagepath;
     return this.StudentManagmentService.update(+id, UpdatStudentDto);
   }
 
@@ -54,6 +55,7 @@ export class StudentManagmentController {
     @Param('id') id: string,
     @Body() updatStudentDto: UpdateStudentDto,
   ) {
+   // CreateStudentDto.Image = this.imagepath;
     return this.StudentManagmentService.update(+id, updatStudentDto);
   }
 
@@ -83,7 +85,7 @@ export class StudentManagmentController {
     console.log('path', image.path);
     return 'file upload API';
   }
-  @Get('showimage/:image')
+  @Get('show/:image')
   seeUploadedFile(@Param('image') image, @Res() res) {
     return res.sendFile(image, { root: './images' });
   }

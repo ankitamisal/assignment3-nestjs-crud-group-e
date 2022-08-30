@@ -45,32 +45,4 @@ updatePut(@Param('id') id: number, @Body() createBookDto: UpdateBookDto){
     return this.bookService.deleteBook(+id);
   }
 
-  @Post('images')
-  @UseInterceptors(FileInterceptor('image',{
-    storage: diskStorage({
-      destination: './image',
-      filename:(req, image, callback) =>{
-        const uniqueSuffix = Date.now() +'-'+ Math.round(Math.random()*1e9);
-        const ext = extname(image.originalname);
-        // const filename = `${image.originalname}-${uniqueSuffix}${ext}`;
-        const filename = `${uniqueSuffix}${ext}`;
-        callback(null,filename);
-      }
-    }),
-  }),
-  )
-  handleupload(@UploadedFile() image:Express.Multer.File){
-    this.imagepath = image.path;
-    console.log('image', image);
-    console.log('path',image.path);
-    return "file upload API";
 }
-@Get('/image/:image')
-  seeUploadedFile(@Param('image') image, @Res() res) {
-    return res.sendFile(image, { root: './image' });
-  }
-}
-function PUT(arg0: string) {
-  throw new Error('Function not implemented.');
-}
-

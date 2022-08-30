@@ -4,6 +4,7 @@ import { DeleteResult, UpdateResult } from 'typeorm';
 import { } from '../models/product.entity';
 import { ProductPost } from '../models/product.interface';
 
+import{productOneToMany} from "../models/oneTomany.interface"
 
 // import { ProductPost } from '../models/product.entity';
 //import {} from '../models/product.interface'
@@ -15,15 +16,26 @@ import { fileURLToPath } from 'url';
 import { CreateUserModel } from '../models/productModel';
 import { extname } from 'path';
 import { diskStorage } from 'multer';
+import { product_model } from '../models/oneToMany.Model';
 
 @Controller('product')
 export class ProductController {
   imagepath: string;
   constructor(private ProductService: ProductService) { }
+  
   @Post()
   create(@Body() productPost: CreateUserModel): Observable<ProductPost> {
     return this.ProductService.createPost(productPost);
   }
+  // @Post()
+  // createsize(@Body() productSize:product_model):Observable<productOneToMany>{
+  //   return this.
+  // }
+
+
+
+
+
   @Get('/allData')
 
   findPost(): Observable<ProductPost[]> {
@@ -31,22 +43,22 @@ export class ProductController {
     return this.ProductService.findAllPost();
   }
   @Get(':id')
-  findPostId(@Param('id') id: number): Observable<ProductPost> {
+  findPostId(@Param('id', new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number): Observable<ProductPost> {
     return this.ProductService.findById(id);
   }
   @Put(':id')
   updatePost(
-    @Param('id' ) id: number,
+    @Param('id', new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number,
     @Body() productPost: ProductPost,
   ): Observable<UpdateResult> {
     return this.ProductService.updateData(id, productPost);
   }
   @Patch(':id')
-  updateSomeData(@Param('id') id: number, @Body() feedPost: ProductPost): Observable<UpdateResult> {
+  updateSomeData(@Param('id', new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number, @Body() feedPost: ProductPost): Observable<UpdateResult> {
     return this.ProductService.updateSomeData(id, feedPost)
   }
   @Delete(':id')
-  deletePost(@Param('id') id: number): Observable<DeleteResult> {
+  deletePost(@Param('id', new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number): Observable<DeleteResult> {
     return this.ProductService.DeleteData(id)
   }
 
