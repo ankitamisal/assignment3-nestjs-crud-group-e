@@ -11,6 +11,7 @@ import { BookModule } from './book/book.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { ProductPostEntity } from './product-management/models/product.entity';
 import { product_Categories } from './product-management/models/oneToMany.entity';
+import { UserRoleModule } from './user-role/user-role.module';
 
 // sgdvggvsa
 @Module({
@@ -36,6 +37,7 @@ import { product_Categories } from './product-management/models/oneToMany.entity
     MulterModule.register({
       dest: './images',
     }),
+    UserRoleModule,
   ],
   controllers: [AppController],
   providers: [AppService],
