@@ -22,6 +22,13 @@ export class ProductSizeController {
         return this.productSizeService.createproductsize(productSize)
     }
 
+    @Get("/allData")
+    allData(): Observable<productOneToMany[]> {
+
+        return this.productSizeService.findAllData()
+    }
+
+
 
 
 }
