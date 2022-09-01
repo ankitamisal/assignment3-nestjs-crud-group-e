@@ -20,13 +20,14 @@ import { extname } from 'path';
 // import { get } from 'http';
 
 import { CreateStudentDto } from './dto/create-student.dto';
+import { create_stud_sub_Dto } from './dto/stude_sub.dto';
 import { UpdateStudentDto } from './dto/update-student.dto';
 import { StudentManagmentService } from './student-managment.service';
 
 @Controller('student-managment')
 export class StudentManagmentController {
   imagepath: string;
-
+  //services are injectable with the help of dependency injection inside the constructor
   constructor(
     private readonly StudentManagmentService: StudentManagmentService,
   ) {}
@@ -35,10 +36,23 @@ export class StudentManagmentController {
     CreateStudentDto.Image = this.imagepath;
     return this.StudentManagmentService.create(CreateStudentDto);
   }
+
   @Get()
   findAll() {
     return this.StudentManagmentService.findAll();
   }
+
+  @Post('/stud_sub1')
+  create_stud_sub(@Body() create_stud_sub_Dto: create_stud_sub_Dto) {
+    //CreateStudentDto.Image = this.imagepath;
+    return this.StudentManagmentService.create_stud_sub(create_stud_sub_Dto);
+  }
+
+  @Get('/stud_sub')
+  findAll_stud_sub() {
+    return this.StudentManagmentService.findAll_stud_sub();
+  }
+
   @Get(':id')
   findOne(@Param('id') id: number) {
     return this.StudentManagmentService.findOne(id);
@@ -55,7 +69,7 @@ export class StudentManagmentController {
     @Param('id') id: string,
     @Body() updatStudentDto: UpdateStudentDto,
   ) {
-   // CreateStudentDto.Image = this.imagepath;
+    // CreateStudentDto.Image = this.imagepath;
     return this.StudentManagmentService.update(+id, updatStudentDto);
   }
 
@@ -83,7 +97,7 @@ export class StudentManagmentController {
     this.imagepath = image.path;
     console.log('image', image);
     console.log('path', image.path);
-    return 'file upload API';
+    return 'file upload Successfully...';
   }
   @Get('show/:image')
   seeUploadedFile(@Param('image') image, @Res() res) {

@@ -3,8 +3,10 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { userInfo } from 'os';
 import { Repository } from 'typeorm';
 import { CreateStudentDto } from './dto/create-student.dto';
+import { create_stud_sub_Dto } from './dto/stude_sub.dto';
 import { UpdateStudentDto } from './dto/update-student.dto';
 import { student_m } from './entity/student.entity';
+import { Student_subject } from './entity/Student_subject.entity';
 
 @Injectable()
 export class StudentManagmentService {
@@ -12,7 +14,11 @@ export class StudentManagmentService {
   constructor(
     @InjectRepository(student_m)
     private readonly studentRepository: Repository<student_m>,
+
+    @InjectRepository(Student_subject)
+    private readonly student_subRepository: Repository<Student_subject>,
   ) {}
+
   create(CreateStudentDto: CreateStudentDto): Promise<student_m> {
     // let stud: student_m = new student_m();
     // //student.id = CreateStudentDto.id
@@ -27,6 +33,23 @@ export class StudentManagmentService {
 
   findAll(): Promise<student_m[]> {
     return this.studentRepository.find();
+  }
+  create_stud_sub(
+    create_stud_sub_Dto: create_stud_sub_Dto,
+  ): Promise<Student_subject> {
+    // let stud: student_m = new student_m();
+    // //student.id = CreateStudentDto.id
+    // stud.FirstName = CreateStudentDto.FirstName;
+    // stud.LastName = CreateStudentDto.LastName;
+    // stud.Gender = CreateStudentDto.Gender;
+    // stud.Student_Email = CreateStudentDto.Student_Email;
+    // stud.Student_Add = CreateStudentDto.Student_Add;
+    // return this.studentRepository.save(stud);
+    return this.student_subRepository.save(create_stud_sub_Dto);
+  }
+
+  findAll_stud_sub(): Promise<Student_subject[]> {
+    return this.student_subRepository.find();
   }
 
   findOne(id: number) {
