@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { from, Subject } from 'rxjs';
 import { Repository } from 'typeorm';
-import { readonly } from 'vue';
 import { student_m } from '../entity/student.entity';
 import { Student_subject } from '../entity/Student_subject.entity';
 import { subjects } from '../entity/subject.entity';
