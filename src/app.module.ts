@@ -35,6 +35,9 @@ import { product_Categories } from './product-management/models/oneToMany.entity
     MulterModule.register({
       dest: './images',
     }),
+    UserRoleModule,
+
+
   ],
   controllers: [AppController],
   providers: [AppService],
