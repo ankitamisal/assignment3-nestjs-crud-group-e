@@ -4,7 +4,7 @@ import { ProductPostEntity } from "./product.entity"
 
 @Entity()
 export class product_Categories {
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryGeneratedColumn()
     id: number
 
     @Column()
