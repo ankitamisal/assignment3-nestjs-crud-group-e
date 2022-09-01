@@ -5,15 +5,24 @@ import { employee_t } from './entity/employee.entity';
 import { EmployeeController } from './employee.controller';
 import { EmployeeService } from './employee.service';
 import { MulterModule } from '@nestjs/platform-express';
+// import { Contact } from './entity/Contact.entity';
+// import { Task } from './entity/Task.entity';
+// import { Meeting } from './entity/metting.entity';
+import { Department } from './entity/department.entity';
+import { DepartmentController } from './department/department.controller';
+import { DepartmentService } from './department/department.service';
+import { Employee_dept } from './entity/employee-dept.entity';
+
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([employee_t]),
+    TypeOrmModule.forFeature([employee_t, Department,Employee_dept]),
+    
     // MulterModule.register({
     //   dest: './images',
     // }),
   ],
-  controllers: [EmployeeController],
-  providers: [EmployeeService],
+  controllers: [EmployeeController,DepartmentController],
+  providers: [EmployeeService,DepartmentService]
 })
 export class EmployeeModule {}

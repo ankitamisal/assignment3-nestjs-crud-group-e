@@ -4,6 +4,7 @@ import { DeleteResult, UpdateResult } from 'typeorm';
 import { } from '../models/product.entity';
 import { ProductPost } from '../models/product.interface';
 
+import { productOneToMany } from "../models/oneTomany.interface"
 
 // import { ProductPost } from '../models/product.entity';
 //import {} from '../models/product.interface'
@@ -15,15 +16,40 @@ import { fileURLToPath } from 'url';
 import { CreateUserModel } from '../models/productModel';
 import { extname } from 'path';
 import { diskStorage } from 'multer';
+import { product_model } from '../models/oneToMany.Model';
+import { categories_model } from '../models/categories.Model';
+import { categories_interface } from '../models/categories.interface';
 
 @Controller('product')
 export class ProductController {
   imagepath: string;
+  categories: any;
+  product_Categories: any;
   constructor(private ProductService: ProductService) { }
+
   @Post()
   create(@Body() productPost: CreateUserModel): Observable<ProductPost> {
     return this.ProductService.createPost(productPost);
   }
+  // @Post()
+  // createsize(@Body() productSize:product_model):Observable<productOneToMany>{
+  //   return this.
+  // }
+  @Post('pro-categories')
+
+  createCategories(@Body() product_Categories: categories_model): Observable<categories_interface> {
+    //return this.categories.createCategories(product_Categories)
+    return this.categories.createCategories(product_Categories)
+  }
+  @Get("pro-categories/allData")
+  allData(): Observable<productOneToMany[]> {
+
+    return this.product_Categories.findAllData()
+  }
+
+
+
+
   @Get('/allData')
 
   findPost(): Observable<ProductPost[]> {
@@ -36,7 +62,7 @@ export class ProductController {
   }
   @Put(':id')
   updatePost(
-    @Param('id' ) id: number,
+    @Param('id') id: number,
     @Body() productPost: ProductPost,
   ): Observable<UpdateResult> {
     return this.ProductService.updateData(id, productPost);

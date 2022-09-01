@@ -9,12 +9,10 @@ import { ProductModule } from './product-management/product-management.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { BookModule } from './book/book.module';
 import { MulterModule } from '@nestjs/platform-express';
-import { student_m } from './student-managment/entity/student.entity';
-import { subjects } from './student-managment/entity/subject.entity';
-import { SubjectsController } from './student-managment/subjects/subjects.controller';
-import { StujectsService } from './student-managment/subjects/stujects.service';
+import { ProductPostEntity } from './product-management/models/product.entity';
+import { product_Categories } from './product-management/models/oneToMany.entity';
+import { UserRoleModule } from './user-role/user-role.module';
 import { StudentManagmentModule } from './student-managment/student-managment.module';
-import { Student_subject } from './student-managment/entity/Student_subject.entity';
 
 // sgdvggvsa
 @Module({
@@ -33,15 +31,18 @@ import { Student_subject } from './student-managment/entity/Student_subject.enti
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DATABASE,
       autoLoadEntities: true,
-      //
-      entities: [student_m, subjects, Student_subject],
       synchronize: false,
+      entities: ['dist/src/**/*.entity.js']
     }),
+    TypeOrmModule.forFeature([product_Categories, ProductPostEntity]),
     MulterModule.register({
       dest: './images',
     }),
+    UserRoleModule,
+
+    
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

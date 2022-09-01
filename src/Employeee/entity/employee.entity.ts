@@ -1,19 +1,43 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable, JoinColumn } from 'typeorm';
+
+import { Department } from './department.entity';
+
 
 @Entity()
 export class employee_t {
   @PrimaryGeneratedColumn()
-  id: number;
+    id: number;
   @Column()
+
   Emp_FirstName: string;
   @Column()
+
   Emp_LastName: string;
-  @Column()
+   @Column()
   Emp_Gender: string;
   @Column()
   Emp_Email: string;
   @Column()
   Emp_Add: string;
-  // @Column()
-  // Emp_profile: string;
+  @Column()
+  Emp_MobNumber:string;
+// @OneToOne(()=>Contact,contactInfo=>contactInfo.employee,{onDelete:'CASCADE'})
+// contactInfo:Contact;
+// @OneToMany(()=>Task,task=>task.employee)
+//     tasks:Task[];
+
+// @ManyToOne(()=>employee_t,employee=>employee.directReports,{onDelete:'SET NULL'})
+// manager:employee_t;
+// @OneToMany(()=>employee_t,(employee)=>employee.manager)
+// directReports:employee_t[];
+
+@ManyToMany(()=>Department,department=>department.Employee,{cascade:true, eager:true})
+@JoinTable({
+  name:'Employee_dept',
+})
+department:Promise<Department[]>;
+
+
 }
+

@@ -1,17 +1,13 @@
 import { IsString } from "class-validator";
 
 export class UserPost{
-  
     id:number;
-
-    @IsString()
     name: string;
-
-    @IsString()
-    State: string;
-
-   
+    State: string
+    Email:String;
+    Role:string;
     Image:string;
+    
 
-    createdAt:Date;
+    // createdAt:Date;
 }
