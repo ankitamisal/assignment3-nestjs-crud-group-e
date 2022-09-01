@@ -25,7 +25,6 @@ export class categoriesController {
         return this.categories.findAllData()
     }
 
-
-
+    ///////////////////////////////////////////////////
 
 }
