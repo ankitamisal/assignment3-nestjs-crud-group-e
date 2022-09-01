@@ -18,17 +18,17 @@ export enum ProductData {
   AVAILABLE = "Available",
   OUTOFSTOCK = "OutOfStock"
 }
-export enum ProductSize {
-  SMALL = "S",
-  MEDIUM = "M",
-  LARGE = "L",
-  EXTRALARGE = "XL"
-}
+// export enum ProductSize {
+//   SMALL = "S",
+//   MEDIUM = "M",
+//   LARGE = "L",
+//   EXTRALARGE = "XL"
+// }
 @Entity('product_post')
 
 
 export class ProductPostEntity {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column({ default: '' })

@@ -31,13 +31,15 @@ import { UserRoleModule } from './user-role/user-role.module';
       database: process.env.POSTGRES_DATABASE,
       autoLoadEntities: true,
       synchronize: true,
-      entities:['dist/src/**/*.entity.js']
+      entities: ['dist/src/**/*.entity.js']
     }),
     TypeOrmModule.forFeature([product_Categories, ProductPostEntity]),
     MulterModule.register({
       dest: './images',
     }),
     UserRoleModule,
+
+    
   ],
   controllers: [AppController],
   providers: [AppService],
