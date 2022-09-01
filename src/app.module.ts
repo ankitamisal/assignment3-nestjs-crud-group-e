@@ -30,7 +30,7 @@ import { UserRoleModule } from './user-role/user-role.module';
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DATABASE,
       autoLoadEntities: true,
-      synchronize: true,
+      synchronize: false,
       entities: ['dist/src/**/*.entity.js']
     }),
     TypeOrmModule.forFeature([product_Categories, ProductPostEntity]),
