@@ -14,16 +14,13 @@ export class BookEntity {
     @Column()
     book_number:number;
 
-
-    @ManyToMany(()=>LanguagetEntity,(language_id)=>language_id.Language_id)
+    @ManyToMany(()=>LanguagetEntity,(language_id)=>language_id.Language_id,{cascade: true,
+        eager: true,})
     @JoinTable({
         name:"BookLanguage",
         joinColumn:{
             name:"book_id",
             // foreignKeyConstraintName:"book_id"
-        }, inverseJoinColumn:{
-            name:'language_id',
-            // foreignKeyConstraintName:"language_Id"
         }
     })
     language_id:LanguagetEntity[];

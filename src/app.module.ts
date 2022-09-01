@@ -29,7 +29,7 @@ import { product_Categories } from './product-management/models/oneToMany.entity
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DATABASE,
       autoLoadEntities: true,
-      synchronize: true,
+      synchronize: false,
     }),
     TypeOrmModule.forFeature([product_Categories,ProductPostEntity]),
     MulterModule.register({
