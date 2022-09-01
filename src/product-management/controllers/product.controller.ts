@@ -4,7 +4,7 @@ import { DeleteResult, UpdateResult } from 'typeorm';
 import { } from '../models/product.entity';
 import { ProductPost } from '../models/product.interface';
 
-import{productOneToMany} from "../models/oneTomany.interface"
+import { productOneToMany } from "../models/oneTomany.interface"
 
 // import { ProductPost } from '../models/product.entity';
 //import {} from '../models/product.interface'
@@ -17,12 +17,16 @@ import { CreateUserModel } from '../models/productModel';
 import { extname } from 'path';
 import { diskStorage } from 'multer';
 import { product_model } from '../models/oneToMany.Model';
+import { categories_model } from '../models/categories.Model';
+import { categories_interface } from '../models/categories.interface';
 
 @Controller('product')
 export class ProductController {
   imagepath: string;
+  categories: any;
+  product_Categories: any;
   constructor(private ProductService: ProductService) { }
-  
+
   @Post()
   create(@Body() productPost: CreateUserModel): Observable<ProductPost> {
     return this.ProductService.createPost(productPost);
@@ -31,7 +35,17 @@ export class ProductController {
   // createsize(@Body() productSize:product_model):Observable<productOneToMany>{
   //   return this.
   // }
+  @Post('pro-categories')
 
+  createCategories(@Body() product_Categories: categories_model): Observable<categories_interface> {
+    //return this.categories.createCategories(product_Categories)
+    return this.categories.createCategories(product_Categories)
+  }
+  @Get("pro-categories/allData")
+  allData(): Observable<productOneToMany[]> {
+
+    return this.product_Categories.findAllData()
+  }
 
 
 
@@ -43,22 +57,22 @@ export class ProductController {
     return this.ProductService.findAllPost();
   }
   @Get(':id')
-  findPostId(@Param('id', new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number): Observable<ProductPost> {
+  findPostId(@Param('id') id: number): Observable<ProductPost> {
     return this.ProductService.findById(id);
   }
   @Put(':id')
   updatePost(
-    @Param('id', new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number,
+    @Param('id') id: number,
     @Body() productPost: ProductPost,
   ): Observable<UpdateResult> {
     return this.ProductService.updateData(id, productPost);
   }
   @Patch(':id')
-  updateSomeData(@Param('id', new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number, @Body() feedPost: ProductPost): Observable<UpdateResult> {
+  updateSomeData(@Param('id') id: number, @Body() feedPost: ProductPost): Observable<UpdateResult> {
     return this.ProductService.updateSomeData(id, feedPost)
   }
   @Delete(':id')
-  deletePost(@Param('id', new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number): Observable<DeleteResult> {
+  deletePost(@Param('id') id: number): Observable<DeleteResult> {
     return this.ProductService.DeleteData(id)
   }
 
