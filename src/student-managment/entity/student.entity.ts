@@ -1,5 +1,6 @@
 import { IsNotEmpty } from 'class-validator';
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable } from 'typeorm';
+import { subjects } from './subject.entity';
 @Entity()
 export class student_m {
   //@PrimaryGeneratedColumn('uuid')
@@ -24,4 +25,13 @@ export class student_m {
 
   @Column()
   Image: string;
+
+  @ManyToMany(() => subjects, (subject) => subject.students, {
+    cascade: true,
+    eager: true,
+  })
+  @JoinTable({
+    name: 'Student_subject',
+  })
+  subjects: Promise<subjects[]>;
 }
