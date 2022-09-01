@@ -13,6 +13,6 @@ export class Department{
 
 
     @ManyToMany(()=>employee_t,Employee=>Employee.department)
-    @JoinTable()
-    Employee:Promise<employee_t>
+   
+ Employee:Promise<employee_t[]>
 }

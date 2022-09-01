@@ -11,11 +11,12 @@ import { MulterModule } from '@nestjs/platform-express';
 import { Department } from './entity/department.entity';
 import { DepartmentController } from './department/department.controller';
 import { DepartmentService } from './department/department.service';
+import { Employee_dept } from './entity/employee-dept.entity';
 
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([employee_t, Department]),
+    TypeOrmModule.forFeature([employee_t, Department,Employee_dept]),
     
     // MulterModule.register({
     //   dest: './images',

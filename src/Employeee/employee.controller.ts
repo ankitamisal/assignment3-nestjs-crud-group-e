@@ -18,6 +18,7 @@ import { create } from 'domain';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
+import { emp_dept_Dto } from './dto/emp-dept.dto';
 import { UpdateEmployeeDto } from './dto/update-employee.dto';
 import { EmployeeModule } from './employee.module';
 import { EmployeeService } from './employee.service';
@@ -106,4 +107,14 @@ export class EmployeeController {
 //   return 'seed completed';
 // }
   
+@Post('/emp_dpt')
+  create_stud_sub(@Body() emp_dept_Dto: emp_dept_Dto) {
+    //CreateStudentDto.Image = this.imagepath;
+    return this.EmployeeService.emp_dept_Dto(emp_dept_Dto);
+  }
+  @Get('/emp_dpt1')
+  findAll_emp_dept() {
+    return this.EmployeeService.findAll_emp_dept();
+  }
+
 }

@@ -1,5 +1,5 @@
 
-import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable, JoinColumn } from 'typeorm';
 
 import { Department } from './department.entity';
 
@@ -16,7 +16,7 @@ export class employee_t {
   Emp_LastName: string;
    @Column()
   Emp_Gender: string;
-  @Column({ unique: true })
+  @Column()
   Emp_Email: string;
   @Column()
   Emp_Add: string;
@@ -32,8 +32,10 @@ export class employee_t {
 // @OneToMany(()=>employee_t,(employee)=>employee.manager)
 // directReports:employee_t[];
 
-@ManyToMany(()=>Department,department=>department.Employee)
-
+@ManyToMany(()=>Department,department=>department.Employee,{cascade:true, eager:true})
+@JoinTable({
+  name:'Employee_dept',
+})
 department:Promise<Department[]>;
 
 

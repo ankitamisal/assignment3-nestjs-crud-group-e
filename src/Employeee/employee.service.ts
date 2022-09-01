@@ -2,7 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
+import { emp_dept_Dto } from './dto/emp-dept.dto';
 import { UpdateEmployeeDto } from './dto/update-employee.dto';
+import { Employee_dept } from './entity/employee-dept.entity';
 import { employee_t } from './entity/employee.entity';
 // import { Contact } from './entity/Contact.entity';
 // import { employee_t } from './entity/employee.entity';
@@ -13,7 +15,9 @@ export class EmployeeService {
   //inject employee repository...
   constructor(
     @InjectRepository(employee_t)
-    private readonly employeeRepository: Repository<employee_t>
+    private readonly employeeRepository: Repository<employee_t>,
+    @InjectRepository(Employee_dept)
+    private readonly  employe_subRepo:Repository<Employee_dept>,
     // @InjectRepository(Contact))
   ){}
    //seed()
@@ -61,6 +65,17 @@ export class EmployeeService {
 //  this.employeeRepository.save(meeting1)
     return this.employeeRepository.save(CreateEmployeeDto);
   }
+  emp_dept_Dto(
+    emp_dept_Dto:emp_dept_Dto):Promise<Employee_dept> {
+      return this.employe_subRepo.save(emp_dept_Dto);
+
+    }
+    findAll_emp_dept():Promise<Employee_dept[]>
+    {
+      return this.employe_subRepo.find();
+    }
+
+
   findAll(): Promise<employee_t[]> {
     return this.employeeRepository.find();
   }
