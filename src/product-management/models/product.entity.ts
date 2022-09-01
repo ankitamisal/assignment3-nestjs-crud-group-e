@@ -8,7 +8,7 @@
 //     createdAt?:Date;
 // }
 //import { type } from 'os';
-import { timestamp } from 'rxjs';
+//import { timestamp } from 'rxjs';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 //import {v4 as uuidv4} from 'uuid';
 

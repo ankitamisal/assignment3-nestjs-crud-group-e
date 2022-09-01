@@ -1,5 +1,6 @@
-import { IsString } from "class-validator";
+
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { IsString } from 'class-validator';
 @Entity('book_detail')
 export class BookEntity {
     @PrimaryGeneratedColumn()
