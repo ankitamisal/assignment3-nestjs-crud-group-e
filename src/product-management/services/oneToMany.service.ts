@@ -17,4 +17,10 @@ export class oneToMany_service {
         return from(this.oneToManyRepository.save(productsize))
     }
 
+
+    findAllData(): Observable<product_Categories[]> {
+        return from(this.oneToManyRepository.find())
+
+    }
+
 }

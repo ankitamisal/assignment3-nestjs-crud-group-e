@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Put, Res, UploadedFile, UseInterceptors } from '@nestjs/common';
-import { UserPost } from './post.interface';
+import { UserPost } from './dto/post.dto';
 import { UserService } from './user.service';
 import { Observable } from 'rxjs';
 import{ UpdateResult } from 'typeorm';
@@ -7,6 +7,7 @@ import{ DeleteResult } from 'typeorm';
 import { extname } from 'path';
 import { FileInterceptor } from '@nestjs/platform-express/multer';
 import { diskStorage } from 'multer';
+
 
 
 @Controller('user')
@@ -38,14 +39,23 @@ update(
 
     return this.userService.updateUser(id, userPost)
 }
+
+@Put(':id')
+updateAll(
+
+  @Param(':id') id:number,
+  @Body() userPost: UserPost,
+):Observable<UpdateResult> {
+
+  return this.userService.updateAllUser(id, userPost)
+}
+
 @Delete(':id')
 delete(
     @Param('id') id:number,
     
 ):Observable<DeleteResult>{
-    return this.userService.deleteUser(id)
-    
-
+    return this.userService.deleteUser(+id)
 }
 @Post('/images')
 @UseInterceptors(
@@ -71,7 +81,7 @@ handleupload(@UploadedFile() image: Express.Multer.File) {
 }
 @Get('showimage/:image')
 seeUploadedFile(@Param('image') image, @Res() res) {
-  return res.sendFile(image, { root: './images' });
+  return res.sendFile(image, { root:'./images' });
 
 }
-}
+} 
