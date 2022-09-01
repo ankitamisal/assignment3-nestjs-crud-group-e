@@ -4,7 +4,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/models/user.module';
 import { EmployeeModule } from './Employeee/employee.module';
-import { StudentManagmentModule } from './student-managment/student-managment.module';
+// import { StudentManagmentModule } from './student-managment/student-managment.module';
 import { ProductModule } from './product-management/product-management.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { BookModule } from './book/book.module';
@@ -12,6 +12,7 @@ import { MulterModule } from '@nestjs/platform-express';
 import { ProductPostEntity } from './product-management/models/product.entity';
 import { product_Categories } from './product-management/models/oneToMany.entity';
 import { UserRoleModule } from './user-role/user-role.module';
+import { StudentManagmentModule } from './student-managment/student-managment.module';
 
 // sgdvggvsa
 @Module({
