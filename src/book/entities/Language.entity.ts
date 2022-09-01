@@ -3,6 +3,7 @@ import { Column, Entity, JoinColumn,ManyToMany,ManyToOne ,OneToMany, PrimaryGene
 import { BookEntity } from "./book.entity";
 @Entity('Language')
 export class LanguagetEntity {
+
     @PrimaryGeneratedColumn()
     Language_id: number;
    @Column()

@@ -32,7 +32,6 @@ import { StudentManagmentModule } from './student-managment/student-managment.mo
       database: process.env.POSTGRES_DATABASE,
       autoLoadEntities: true,
       synchronize: false,
-      entities: ['dist/src/**/*.entity.js']
     }),
     TypeOrmModule.forFeature([product_Categories, ProductPostEntity]),
     MulterModule.register({
