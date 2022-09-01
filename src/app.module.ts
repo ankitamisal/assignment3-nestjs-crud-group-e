@@ -39,7 +39,7 @@ import { UserRoleModule } from './user-role/user-role.module';
     }),
     UserRoleModule,
 
-    
+
   ],
   controllers: [AppController],
   providers: [AppService],
